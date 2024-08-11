@@ -1,0 +1,28 @@
+building instructions
+
+get autoconf first
+
+wget http://ftp.gnu.org/gnu/autoconf/autoconf-latest.tar.gz
+tar xzvf autoconf-latest.tar.gz
+cd autoconf-*
+./configure 
+make
+sudo make install
+
+# to install quickfix
+
+cd quickfix
+# make sure the readme file exeists (this file)
+touch README
+
+# make sure configure can find openssl headers and does not complain
+# go to /usr/local
+sudo ln -s openssl ssl
+cd openssl
+sudo ln -s ../include/ 
+sudo ln -s ../lib
+
+./bootstrap
+./configure -with-openssl=/usr/local/openssl
+
+make -j8
